@@ -1,0 +1,20 @@
+[config]
+paths = [ "images",]
+test_dir = "test"
+generate = "auto"
+tmp_dir = "tmp"
+ref_bin = "../../ref/imageCompressor"
+bin = "../../imageCompressor"
+
+[alan]
+test_name = "alan"
+test_files = [ "blue_to_red_gradient_25",]
+average = 20
+-n = 10
+-l = 0.2
+
+[veco]
+test_name = "veco"
+test_files = [ "rick_and_morty_100",]
+-n = 1
+-l = 0.8

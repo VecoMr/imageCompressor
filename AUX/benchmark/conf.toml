@@ -1,0 +1,27 @@
+[config]
+paths = ["images"]
+test_dir = "test"
+generate = "auto"
+tmp_dir = "tmp"
+ref_bin = "../../ref/imageCompressor"
+bin = "../../imageCompressor"
+
+[blue_to_red_gradient_5_1]
+test_name = "blue_to_red_gradient_5_1"
+test_files = ["blue_to_red_gradient_25", "blue_to_red_gradient_50", "blue_to_red_gradient_100"]
+-n = 5
+-l = 0.8
+average = 35
+
+[gravity_falls_10_1]
+test_name = "gravity_falls_10_1"
+test_files = ["gravity_falls_100", "gravity_falls_250"]
+-n = 10
+-l = 1
+average = 10
+
+[rick_and_morty_5_1]
+test_name = "rick_and_morty_5_1"
+test_files = ["rick_and_morty_100", "rick_and_morty_250"]
+-n = 5
+-l = 1

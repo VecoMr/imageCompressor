@@ -1,0 +1,52 @@
+name: imageCompressor-checker
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+
+env:
+  EXECUTABLES: "binary"
+  ARGUMENTS: ""
+  BIN_NAME: imageCompressor
+
+jobs:
+  check_compilation:
+    name: "Check the compilation of the binary."
+    runs-on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Checking Makefile existence
+        run: |
+          if [ ! -e Makefile ]; then
+            echo "Makefile not found."
+            exit 1
+          fi
+
+      - name: Checking Makefile and building binary
+        run: |
+          make
+          if [ $? -ne 0 ]; then
+            echo "Make failed."
+            make clean
+            exit 1
+          fi
+          make clean
+
+      - name: Checking binary existence
+        run: |
+          if [ ! -e "./${{ env.BIN_NAME }}" ]; then
+            echo "Binary not found."
+            exit 1
+          fi
+        timeout-minutes: 2
